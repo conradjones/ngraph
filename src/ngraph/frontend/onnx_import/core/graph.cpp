@@ -209,6 +209,13 @@ namespace ngraph
         void Graph::set_friendly_names(const Node& onnx_node,
                                        const NodeVector& ng_node_vector) const
         {
+            // set friendly name to all nodes produced for onnx_node
+            const auto ng_inputs = onnx_node.get_ng_inputs();
+            ngraph::traverse_nodes(
+                ng_node_vector,
+                [&tag](std::shared_ptr<ngraph::Node> ng_node) { ng_node->set_friendly_name(onnx_node.get_name()); },
+                ng_inputs);
+
             for (int i = 0; i < ng_node_vector.size(); ++i)
             {
                 // Trailing optional outputs may not be specified in the ONNX model.
