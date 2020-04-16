@@ -137,6 +137,7 @@ shared_ptr<runtime::Backend> runtime::BackendManager::create_backend(const std::
         }
         throw runtime_error(ss.str());
     }
+    std::cout << "call it-second(config)\n";
     return it->second(config);
 }
 
