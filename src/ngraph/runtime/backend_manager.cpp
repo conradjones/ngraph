@@ -80,6 +80,9 @@ shared_ptr<runtime::Backend> runtime::BackendManager::create_backend(const std::
 {
     string type = config;
 
+    std::cout << "config" << config << "\n";
+    
+    
     // strip off attributes, IE:CPU becomes IE
     auto colon = type.find(":");
     if (colon != type.npos)
@@ -88,7 +91,9 @@ shared_ptr<runtime::Backend> runtime::BackendManager::create_backend(const std::
     }
 
     auto& registry = get_registry();
+    std::cout << "auto& registry = get_registry();\n";
     auto it = registry.find(type);
+    std::cout << "auto it = registry.find(type);\n";
     string error;
 #ifdef NGRAPH_DYNAMIC_COMPONENTS_ENABLE
     if (it == registry.end())
@@ -127,6 +132,7 @@ shared_ptr<runtime::Backend> runtime::BackendManager::create_backend(const std::
     }
 #endif
 
+    std::cout << "it == registry.end();\n";
     if (it == registry.end())
     {
         stringstream ss;
