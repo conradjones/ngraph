@@ -22,6 +22,9 @@
 extern "C" PLAIDML_BACKEND_API void ngraph_register_plaidml_backend()
 {
     ngraph::runtime::BackendManager::register_backend("PlaidML", [](const std::string& config) {
+        
+        std::cout << "Backend called\n";
+        
         return std::make_shared<ngraph::runtime::plaidml::PlaidML_Backend>(config);
     });
 }
