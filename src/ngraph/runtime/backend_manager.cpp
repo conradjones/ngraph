@@ -183,6 +183,7 @@ DL_HANDLE runtime::BackendManager::open_shared_library(string type)
         if (error.size() > 0)
         {
             ss << "\nOpen error message '" << error << "'";
+            std::cout << ss.str() << "\n";
         }
         throw runtime_error(ss.str());
     }
